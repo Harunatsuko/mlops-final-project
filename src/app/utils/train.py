@@ -7,8 +7,8 @@ from torch import nn
 from torchvision import transforms
 from os import walk
 
-from model.dataset import FlowersDataset
-from model.model import CycleGANModel
+from app.model.dataset import FlowersDataset
+from app.model.model import CycleGANModel
 
 torch.manual_seed(0)
 

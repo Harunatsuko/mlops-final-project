@@ -2,7 +2,7 @@ import os
 import json
 from datetime import datetime
 import boto3
-from model.model import MODEL_FILENAME
+from app.model.model import MODEL_FILENAME
 
 def save_last_weights_to_s3():
     saved = True

@@ -3,9 +3,9 @@ from torch import nn
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 from torchvision.utils import make_grid
-from model.generator import Generator
-from model.discriminator import Discriminator
-from model.loss_helpers import disc_loss, gen_loss
+from app.model.generator import Generator
+from app.model.discriminator import Discriminator
+from app.model.loss_helpers import disc_loss, gen_loss
 
 MODEL_FILENAME = 'cycleGANmodel.pth'
 

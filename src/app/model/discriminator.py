@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from model.blocks import FeatureMap, Contracting
+from app.model.blocks import FeatureMap, Contracting
 
 class Discriminator(nn.Module):
     def __init__(self, input_channels, hidden_channels=64):

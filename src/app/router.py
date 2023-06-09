@@ -4,10 +4,10 @@ from fastapi import APIRouter
 from starlette import status
 from starlette.responses import Response
 
-from app_models import Config, ObjectsList
-from utils.train import train_in_process
-from utils.load import upload_from_s3
-from utils.save import save_last_weights_to_s3
+from app.app_models import Config, ObjectsList
+from app.utils.train import train_in_process
+from app.utils.load import upload_from_s3
+from app.utils.save import save_last_weights_to_s3
 
 PATH_A = 'flowers_imitation'
 PATH_B = 'flowers_photo'
