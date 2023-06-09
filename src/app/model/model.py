@@ -4,9 +4,9 @@ from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 from torchvision.utils import make_grid
 import matplotlib.pyplot as plt
-from generator import Generator
-from discriminator import Discriminator
-from loss_helpers import disc_loss, gen_loss
+from model.generator import Generator
+from model.discriminator import Discriminator
+from model.loss_helpers import disc_loss, gen_loss
 
 def show_tensor_images(image_tensor, num_images=25, size=(1, 28, 28)):
     '''
@@ -129,8 +129,8 @@ class CycleGANModel():
                         mean_generator_loss = 0
                         mean_discriminator_loss = 0
 
-                        show_tensor_images(torch.cat([real_A, real_B]), size=(self.dim_A, self.target_shape, self.target_shape))
-                        show_tensor_images(torch.cat([fa, fb]), size=(self.dim_B, self.target_shape, self.target_shape))
+                        # show_tensor_images(torch.cat([real_A, real_B]), size=(self.dim_A, self.target_shape, self.target_shape))
+                        # show_tensor_images(torch.cat([fa, fb]), size=(self.dim_B, self.target_shape, self.target_shape))
                 
                 cur_step += 1
             self.save()
