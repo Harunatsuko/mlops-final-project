@@ -8,6 +8,8 @@ from model.generator import Generator
 from model.discriminator import Discriminator
 from model.loss_helpers import disc_loss, gen_loss
 
+MODEL_FILENAME = 'cycleGANmodel.pth'
+
 def show_tensor_images(image_tensor, num_images=25, size=(1, 28, 28)):
     '''
     Function for visualizing images: Given a tensor of images, number of images, and
@@ -136,7 +138,7 @@ class CycleGANModel():
             self.save()
 
     def save(self):
-        path_to_save = self.output_dir + '/cycleGANmodel.pth'
+        path_to_save = self.output_dir + '/' + MODEL_FILENAME
         torch.save({
             'gen_AB': self.gen_AB.state_dict(),
             'gen_BA': self.gen_BA.state_dict(),

@@ -5,8 +5,9 @@ from starlette import status
 from starlette.responses import Response
 
 from app_models import Config, ObjectsList
-from train import train_in_process
-from load import upload_from_s3
+from utils.train import train_in_process
+from utils.load import upload_from_s3
+from utils.save import save_last_weights_to_s3
 
 PATH_A = 'flowers_imitation'
 PATH_B = 'flowers_photo'
@@ -46,3 +47,11 @@ def set_config(config: Config):
     else:
         res = status.HTTP_400_BAD_REQUEST
     return Response(status_code=res)
+
+@api_router.get("/save_model/")
+def save_model():
+    saved = save_last_weights_to_s3()
+    if saved:
+        return Response(status_code=status.HTTP_200_OK)
+    else:
+        return Response(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
