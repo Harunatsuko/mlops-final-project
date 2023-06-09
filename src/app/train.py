@@ -51,7 +51,7 @@ def train(path_A, path_B, output_path, num_epochs=20):
     lr = 0.0001
     dim_A = 3
     dim_B = 3
-    device = 'cuda'
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
     batch_size = 1
 
     model = CycleGANModel('cuda', output_path)
