@@ -3,24 +3,11 @@ from torch import nn
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 from torchvision.utils import make_grid
-import matplotlib.pyplot as plt
 from model.generator import Generator
 from model.discriminator import Discriminator
 from model.loss_helpers import disc_loss, gen_loss
 
 MODEL_FILENAME = 'cycleGANmodel.pth'
-
-def show_tensor_images(image_tensor, num_images=25, size=(1, 28, 28)):
-    '''
-    Function for visualizing images: Given a tensor of images, number of images, and
-    size per image, plots and prints the images in an uniform grid.
-    '''
-    image_tensor = (image_tensor + 1) / 2
-    image_shifted = image_tensor
-    image_unflat = image_shifted.detach().cpu().view(-1, *size)
-    image_grid = make_grid(image_unflat[:num_images], nrow=5)
-    plt.imshow(image_grid.permute(1, 2, 0).squeeze())
-    plt.show()
 
 class CycleGANModel():
     def __init__(self,
@@ -131,8 +118,6 @@ class CycleGANModel():
                         mean_generator_loss = 0
                         mean_discriminator_loss = 0
 
-                        # show_tensor_images(torch.cat([real_A, real_B]), size=(self.dim_A, self.target_shape, self.target_shape))
-                        # show_tensor_images(torch.cat([fa, fb]), size=(self.dim_B, self.target_shape, self.target_shape))
                 
                 cur_step += 1
             self.save()

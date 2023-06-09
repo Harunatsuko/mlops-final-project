@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from router import api_router
+from app.router import api_router
 
 docs_kwargs = {}
 app = FastAPI(**docs_kwargs)

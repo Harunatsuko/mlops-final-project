@@ -1,2 +1,8 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
 fastapi
 uvicorn
+torch
+torchvision
+torchaudio
+boto3
+Pillow
