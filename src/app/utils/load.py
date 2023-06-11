@@ -25,7 +25,8 @@ def upload_from_s3(objects_list):
                 curr_folder = config['data_path']
                 for folder in folders.split('/'):
                     curr_folder = os.path.join(curr_folder, folder)
-                    os.mkdir(curr_folder)
+                    if not os.path.exists(curr_folder):
+                        os.mkdir(curr_folder)
 
             out_path = os.path.join(config['data_path'], folders, filename)
             s3.download_file(config['src_bucket'], obj, out_path)
