@@ -4,10 +4,14 @@ import boto3
 
 def upload_from_s3(objects_list):
     updated = True
+    AWS_ID_KEY = os.environ['AWS_ID_KEY']
+    AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
     try:
         session = boto3.session.Session()
         s3 = session.client(service_name='s3',
-                            endpoint_url='https://storage.yandexcloud.net')
+                            endpoint_url='https://storage.yandexcloud.net',
+                            aws_access_key_id= AWS_ID_KEY,
+                            aws_secret_access_key= AWS_SECRET_KEY)
 
         with open('./config.json', 'r', encoding='utf8') as c:
             config = json.load(c)
