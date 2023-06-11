@@ -1,5 +1,5 @@
 # pull official base image
-FROM python:3.8.1-alpine
+FROM ubuntu:latest
 
 # set work directory
 WORKDIR /usr/src/app
@@ -7,13 +7,14 @@ WORKDIR /usr/src/app
 # copy requirements file
 COPY ./requirements.txt /usr/src/app/requirements.txt
 
+# install python
+RUN apt-get update && apt-get install -y \
+    software-properties-common
+RUN add-apt-repository universe
+RUN apt-get update && apt-get install -y curl python3 python3-pip
+
 # install dependencies
-RUN set -eux \
-    && apk add --no-cache --virtual .build-deps build-base \
-        libressl-dev libffi-dev gcc musl-dev python3-dev \
-    && pip install --upgrade pip setuptools wheel \
-    && pip install -r /usr/src/app/requirements.txt \
-    && rm -rf /root/.cache/pip
+RUN pip install -r /usr/src/app/requirements.txt
 
 # copy project
 COPY . /usr/src/app/

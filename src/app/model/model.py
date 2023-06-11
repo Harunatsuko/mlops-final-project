@@ -1,7 +1,6 @@
 import torch
 from torch import nn
 from torch.utils.data import DataLoader
-from tqdm.auto import tqdm
 from torchvision.utils import make_grid
 from app.model.generator import Generator
 from app.model.discriminator import Discriminator

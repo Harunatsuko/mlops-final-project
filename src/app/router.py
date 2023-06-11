@@ -16,6 +16,7 @@ api_router = APIRouter()
 
 @api_router.post("/load_data/")
 def load_data(objects_list: ObjectsList):
+    print(objects_list.objects_list)
     updated = upload_from_s3(objects_list.objects_list)
     if updated:
         return Response(status_code=status.HTTP_200_OK)
