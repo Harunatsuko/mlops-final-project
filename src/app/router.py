@@ -51,8 +51,10 @@ def set_config(config: Config):
 
 @api_router.get("/save_model/")
 def save_model():
-    saved = save_last_weights_to_s3()
+    saved, is_new = save_last_weights_to_s3()
+    resp = Response()
     if saved:
-        return Response(status_code=status.HTTP_200_OK)
+        resp.status_code=status.HTTP_200_OK
+        resp._content = json.dumps({'is_new':is_new})
     else:
-        return Response(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        resp.status_code=status.HTTP_500_INTERNAL_SERVER_ERROR

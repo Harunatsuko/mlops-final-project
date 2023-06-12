@@ -99,7 +99,7 @@ class CycleGANModel():
         
         for epoch in range(num_epochs):
             cur_step = 0
-            for real_A, real_B in tqdm(dataloader):
+            for real_A, real_B in dataloader:
                 
                 disc_A_loss, disc_B_loss, gen_loss, fa, fb = self._train_step(real_A,
                                                                       real_B,
