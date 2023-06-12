@@ -2,7 +2,7 @@ import os
 import json
 from fastapi import APIRouter
 from starlette import status
-from starlette.responses import Response
+from starlette.responses import Response, JSONResponse
 
 from app.app_models import Config, ObjectsList
 from app.utils.train import train_in_process
@@ -54,7 +54,6 @@ def save_model():
     saved, is_new = save_last_weights_to_s3()
     resp = Response()
     if saved:
-        resp.status_code=status.HTTP_200_OK
-        resp._content = json.dumps({'is_new':is_new})
+        return JSONResponse({'is_new':is_new}, status_code=status.HTTP_200_OK)
     else:
-        resp.status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+        return Response(status.HTTP_500_INTERNAL_SERVER_ERROR)
