@@ -7,10 +7,14 @@ from app.model.model import MODEL_FILENAME
 def save_last_weights_to_s3():
     saved = True
     is_new = False
+    AWS_ID_KEY = os.environ['AWS_ID_KEY']
+    AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
     try:
         session = boto3.session.Session()
         s3 = session.client(service_name='s3',
-                            endpoint_url='https://storage.yandexcloud.net')
+                            endpoint_url='https://storage.yandexcloud.net',
+                            aws_access_key_id= AWS_ID_KEY,
+                            aws_secret_access_key= AWS_SECRET_KEY)
 
         with open('./config.json', 'r', encoding='utf8') as c:
             config = json.load(c)
