@@ -8,8 +8,8 @@ services:
       - ./src/:/usr/src/app/
       - ./data/:/usr/data/
       - ./weights/:/usr/weights/
-      - /home/.aws/:/home/.aws/
     env_file:
       - var.env
     ports:
       - 8002:8000
+    restart: always
